@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0,
+      plural: 'Likes',
+    }
+      this.handleClick = this.handleClick.bind(this);
+  }
+handleClick(){
+  let newCount = this.state.count + 1
+  if (newCount === 1){
+    this.setState({plural: "Like"})
+  } else{
+    this.setState({plural: 'Likes'})
+  }
+  this.setState({count: newCount})
+}
+render(){
+  return(
+  <div className="container">
+  <button className="counterBtn"onClick={this.handleClick}>{this.state.count} {this.state.plural}</button>
+  </div>
+)
+}
 }
 
 export default App;
